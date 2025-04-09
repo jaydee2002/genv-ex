@@ -1,0 +1,39 @@
+{
+  "name": "genv-ex",
+  "version": "1.0.0",
+  "description": "Automatically generates a .env.example file from a .env file with placeholders",
+  "main": "src/index.js",
+  "bin": {
+    "env-example": "src/cli.js"
+  },
+  "scripts": {
+    "start": "node src/cli.js",
+    "dev": "nodemon src/cli.js"
+  },
+  "keywords": [
+    "dotenv",
+    "env",
+    "environment",
+    "nodejs",
+    "utility"
+  ],
+  "author": "pahitharandilakshan@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaydee2002/genv-ex.git"
+  },
+  "homepage": "https://github.com/jaydee2002/genv-ex#readme",
+  "bugs": "https://github.com/jaydee2002/genv-ex/issues",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ]
+}
