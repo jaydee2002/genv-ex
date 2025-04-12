@@ -364,20 +364,15 @@ genv-ex/
 If you’re using `src/cli.js`, update the `README.md`:
 
 ```markdown
-
-````
-
 your-project/
 ├── .env
 ├── .genv-exrc
 ├── node_modules/
 ├── package.json
 └── genv-ex/
-├── index.js
-├── src/
-│ └── cli.js
-
-```
+    ├── index.js
+    ├── src/
+    │   └── cli.js
 
 ```
 
@@ -485,3 +480,4 @@ If issues persist:
   - Full `package.json`.
   - Output of `ls -R /Users/jaydee/Desktop/env-example-generator/genv-ex`.
   - Any new errors.
+````
