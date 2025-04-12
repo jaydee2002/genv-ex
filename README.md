@@ -1,4 +1,3 @@
-````markdown
 # genv-ex
 
 A lightweight Node.js utility to generate a `.env.example` file from a `.env` file, replacing sensitive values with placeholders. Ideal for sharing environment variable templates in Node.js and full-stack projects.
@@ -20,13 +19,11 @@ Install globally for CLI use:
 ```bash
 npm install -g genv-ex
 ```
-````
 
 Or locally in a project:
 
 ```bash
 npm install genv-ex
-
 ```
 
 For development with `nodemon`:
