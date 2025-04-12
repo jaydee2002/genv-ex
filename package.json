@@ -20,7 +20,9 @@
   "author": "Dilakshan Pahitharan <pahitharandilakshan@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "dotenv": "^16.0.0"
+    "commander": "^13.1.0",
+    "dotenv": "^16.5.0",
+    "json5": "^2.2.3"
   },
   "devDependencies": {
     "nodemon": "^3.0.0"
