@@ -2,6 +2,34 @@
 
 A lightweight Node.js utility to generate a `.env.example` file from a `.env` file, replacing sensitive values with placeholders. Ideal for sharing environment variable templates in Node.js and full-stack projects.
 
+## 📦 Simply (Recommended Usage)
+
+### ✔️ Install locally
+
+```bash
+npm install genv-ex
+```
+
+### ✔️ Use in your code
+
+#### CommonJS (default Node.js)
+
+```js
+// index.js (CommonJS)
+const genvex = require("genv-ex");
+
+genvex();
+```
+
+#### ES Modules (with `"type": "module"` in package.json or using `.mjs`)
+
+```js
+// index.js (ESM)
+import genvex from "genv-ex";
+
+genvex();
+```
+
 ## Features
 
 - Generates `.env.example` from `.env` with customizable placeholders.
@@ -14,16 +42,17 @@ A lightweight Node.js utility to generate a `.env.example` file from a `.env` fi
 
 ## Installation
 
-Install globally for CLI use:
+Install locally in a project:
+
+```bash
+# install locally (recommended)
+npm install genv-ex
+```
+
+Or globally for CLI use:
 
 ```bash
 npm install -g genv-ex
-```
-
-Or locally in a project:
-
-```bash
-npm install genv-ex
 ```
 
 For development with `nodemon`:
