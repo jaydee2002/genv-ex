@@ -4,11 +4,11 @@
   "description": "Automatically generates a .env.example file from a .env file with placeholders",
   "main": "src/index.js",
   "bin": {
-    "env-example": "src/cli.js"
+    "env-example": "src/bin/cli.js"
   },
   "scripts": {
-    "start": "node src/cli.js",
-    "dev": "nodemon src/cli.js"
+    "start": "node src/bin/cli.js",
+    "dev": "nodemon src/bin/cli.js"
   },
   "keywords": [
     "dotenv",

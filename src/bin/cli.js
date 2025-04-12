@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const { program } = require("commander");
-const generateEnvExample = require("./index");
+const generateEnvExample = require("../index");
 const { existsSync } = require("fs"); // Import existsSync
 const fs = require("fs").promises;
 const path = require("path");
