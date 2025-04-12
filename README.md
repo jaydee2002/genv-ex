@@ -298,4 +298,4 @@ Please include tests and update this `README.md`.
 
 ### License
 
-MIT License. See [LICENSE](https://www.notion.so/LICENSE) for details.
+MIT License. See [LICENSE](https://github.com/jaydee2002/genv-ex#LICENSE) for details.
