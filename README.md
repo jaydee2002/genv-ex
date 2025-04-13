@@ -12,7 +12,7 @@ npm install genv-ex
 
 ### ✔️ Use in your code
 
-#### CommonJS (default Node.js)
+CommonJS (default Node.js)
 
 ```js
 // index.js (CommonJS)
@@ -21,7 +21,7 @@ const genvex = require("genv-ex");
 genvex();
 ```
 
-#### ES Modules (with `"type": "module"` in package.json or using `.mjs`)
+ES Modules (with `"type": "module"` in package.json or using `.mjs`)
 
 ```js
 // index.js (ESM)

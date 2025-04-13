@@ -2,7 +2,7 @@
 
 const { program } = require("commander");
 const generateEnvExample = require("../index");
-const { existsSync } = require("fs"); // Import existsSync
+const { existsSync } = require("fs");
 const fs = require("fs").promises;
 const path = require("path");
 const readline = require("readline");
@@ -19,17 +19,9 @@ async function prompt(question) {
 program
   .version("1.0.0")
   .description("Generate a .env.example file from a .env file")
-  .option("-i, --input <path>", "Input .env file path", ".env")
-  .option(
-    "-o, --output <path>",
-    "Output .env.example file path",
-    ".env.example"
-  )
-  .option(
-    "-p, --placeholder <value>",
-    "Placeholder for values",
-    "<YOUR_VALUE_HERE>"
-  )
+  .option("-i, --input <path>", "Input .env file path")
+  .option("-o, --output <path>", "Output .env.example file path")
+  .option("-p, --placeholder <value>", "Placeholder for values")
   .option("--preserve <keys...>", "Keys to preserve original values")
   .option("--ignore <keys...>", "Keys to exclude from output")
   .option("--no-comments", "Exclude comments from output")
@@ -41,30 +33,35 @@ program
   .action(async (options) => {
     try {
       if (options.init) {
-        const samplePath = path.resolve(process.cwd(), options.input); // Use input path
+        const samplePath = path.resolve(process.cwd(), options.input || ".env");
         if (existsSync(samplePath)) {
           console.log(
-            `'${options.input}' already exists. Skipping sample creation.`
+            `'${
+              options.input || ".env"
+            }' already exists. Skipping sample creation.`
           );
         } else {
           const sampleContent = `# Sample .env file\nAPI_KEY=your_key\nDATABASE_URL=your_url\n`;
           await fs.writeFile(samplePath, sampleContent, "utf8");
           console.log(
-            `Created sample '${options.input}'. Edit it and run again.`
+            `Created sample '${
+              options.input || ".env"
+            }'. Edit it and run again.`
           );
         }
         process.exit(0);
       }
 
-      // Interactive prompt for missing .env
-      const inputPath = path.resolve(process.cwd(), options.input);
+      const inputPath = path.resolve(process.cwd(), options.input || ".env");
       if (!existsSync(inputPath)) {
-        console.log(`No '${options.input}' file found.`);
+        console.log(`No '${options.input || ".env"}' file found.`);
         const create = await prompt("Create a sample .env file? (y/n): ");
         if (create.toLowerCase() === "y") {
           const sampleContent = `# Sample .env file\nAPI_KEY=your_key\nDATABASE_URL=your_url\n`;
           await fs.writeFile(inputPath, sampleContent, "utf8");
-          console.log(`Created '${options.input}'. Edit it and run again.`);
+          console.log(
+            `Created '${options.input || ".env"}'. Edit it and run again.`
+          );
           process.exit(0);
         } else {
           console.log("Aborting. Please create a .env file to proceed.");
@@ -72,22 +69,27 @@ program
         }
       }
 
-      const result = await generateEnvExample({
+      const cliOptions = {
         envFilePath: options.input,
         outputFilePath: options.output,
         placeholder: options.placeholder,
-        preserveValues: options.preserve || [],
-        ignoreKeys: options.ignore || [],
-        includeComments: !options.noComments,
+        preserveValues: options.preserve || undefined,
+        ignoreKeys: options.ignore || undefined,
+        includeComments: options.noComments ? false : undefined, // Fix mapping
         header: options.header,
-        force: !options.noForce,
+        force: options.noForce ? false : undefined,
         silent: options.silent,
         dryRun: options.dryRun,
-      });
+      };
+
+      !options.silent &&
+        console.log(`CLI options passed to generateEnvExample:`, cliOptions);
+
+      const result = await generateEnvExample(cliOptions);
 
       if (!options.silent && result.written) {
         console.log(
-          `Generated '${options.output}' with keys: ${
+          `Generated '${options.output || ".env.example"}' with keys: ${
             result.keys.join(", ") || "none"
           }`
         );
