@@ -148,7 +148,6 @@ async function generateEnvExample({
 
     let exampleContent = options.header;
 
-    console.log(options.includeComments);
     if (options.includeComments) {
       const lines = envContent.split(/\r?\n|\r/);
       for (let i = 0; i < lines.length; i++) {

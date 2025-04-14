@@ -17,19 +17,20 @@ async function prompt(question) {
 }
 
 program
-  .version("1.0.0")
+  .version("1.0.8")
   .description("Generate a .env.example file from a .env file")
   .option("-i, --input <path>", "Input .env file path")
   .option("-o, --output <path>", "Output .env.example file path")
   .option("-p, --placeholder <value>", "Placeholder for values")
   .option("--preserve <keys...>", "Keys to preserve original values")
   .option("--ignore <keys...>", "Keys to exclude from output")
-  .option("--no-comments", "Exclude comments from output")
+  .option("--no-comments", "Exclude comments from output", false)
   .option("--header <text>", "Custom header text")
+  .option("--force", "Overwrite existing output file", true)
   .option("--no-force", "Do not overwrite existing output file")
-  .option("--silent", "Suppress console output")
-  .option("--dry-run", "Preview output without writing")
-  .option("--init", "Create a sample .env file")
+  .option("--silent", "Suppress console output", true)
+  .option("--dry-run", "Preview output without writing", false)
+  .option("--init", "Create a sample .env file", false)
   .action(async (options) => {
     try {
       if (options.init) {
@@ -73,17 +74,21 @@ program
         envFilePath: options.input,
         outputFilePath: options.output,
         placeholder: options.placeholder,
-        preserveValues: options.preserve || undefined,
-        ignoreKeys: options.ignore || undefined,
-        includeComments: options.noComments ? false : undefined, // Fix mapping
+        preserveValues: options.preserve,
+        ignoreKeys: options.ignore,
+        includeComments: options.noComments ? false : undefined,
         header: options.header,
-        force: options.noForce ? false : undefined,
+        force: options.force && !options.noForce, // Handle force/noForce
         silent: options.silent,
         dryRun: options.dryRun,
       };
 
-      !options.silent &&
-        console.log(`CLI options passed to generateEnvExample:`, cliOptions);
+      if (!options.silent) {
+        console.log(
+          "CLI options passed to generateEnvExample:",
+          JSON.stringify(cliOptions, null, 2)
+        );
+      }
 
       const result = await generateEnvExample(cliOptions);
 
