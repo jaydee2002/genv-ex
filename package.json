@@ -1,6 +1,6 @@
 {
   "name": "genv-ex",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Automatically generates a .env.example file from a .env file with placeholders",
   "main": "src/index.js",
   "bin": {
