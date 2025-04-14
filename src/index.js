@@ -29,7 +29,7 @@ async function generateEnvExample({
   includeComments,
   header,
   force = true,
-  silent = false,
+  silent = true,
   dryRun = false,
   configFile = ".genv-exrc",
 } = {}) {
